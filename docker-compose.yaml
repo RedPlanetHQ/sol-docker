@@ -23,7 +23,7 @@ services:
     ports:
       - 6379:6379
     restart: unless-stopped
-    
+
   server:
     image: "tegonhq/sigma-server:${VERSION}"
     container_name: sigma-server
@@ -160,7 +160,7 @@ services:
       TRIGGER_DOMAIN: ${TRIGGER_DOMAIN}
 
   electric:
-    image: electricsql/electric:${ELECTRIC_IMAGE_TAG:-latest}
+    image: electricsql/electric:1.0.10
     container_name: sigma-electric
     restart: ${RESTART_POLICY:-unless-stopped}
     environment:

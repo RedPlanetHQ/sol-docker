@@ -6,7 +6,7 @@ if [ -d "./docker" ]; then
 fi
 
 # Clone the repository
-git clone https://github.com/tegonhq/sigma-docker.git
+git clone https://github.com/tegonhq/sigma-docker.git docker
 
 # Fetch the .env file from Secret Manager
 gcloud secrets versions access latest --secret=sigma-prod > docker/.env
