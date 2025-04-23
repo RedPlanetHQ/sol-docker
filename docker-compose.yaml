@@ -53,6 +53,9 @@ services:
       - GCP_BUCKET_NAME=${GCP_BUCKET_NAME}
       - GCP_SERVICE_ACCOUNT_FILE=${GCP_SERVICE_ACCOUNT_FILE}
       - PUBLIC_ATTACHMENT_URL=${PUBLIC_ATTACHMENT_URL}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+
     ports:
       - 5555:5555
       - 8001:3001
@@ -108,6 +111,7 @@ services:
       TRIGGER_DOMAIN: ${TRIGGER_DOMAIN}
       INTERNAL_OTEL_TRACE_LOGGING_ENABLED: false
       ELECTRIC_ORIGIN: http://sigma-electric:3000
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL}
     ports:
       - 3030:3030
     networks:
@@ -136,6 +140,7 @@ services:
       SECURE_CONNECTION: "false"
       TRIGGER_PROTOCOL: ${TRIGGER_PROTOCOL}
       TRIGGER_DOMAIN: ${TRIGGER_DOMAIN}
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL}
 
   coordinator:
     image: ghcr.io/triggerdotdev/coordinator:v3
@@ -158,6 +163,7 @@ services:
       SECURE_CONNECTION: "false"
       TRIGGER_PROTOCOL: ${TRIGGER_PROTOCOL}
       TRIGGER_DOMAIN: ${TRIGGER_DOMAIN}
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL}
 
   electric:
     image: electricsql/electric:1.0.10
