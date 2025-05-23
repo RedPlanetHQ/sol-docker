@@ -179,6 +179,21 @@ services:
     ports:
       - ${DOCKER_PUBLISH_IP:-127.0.0.1}:3061:3000
 
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: sigma-qdrant
+    restart: unless-stopped
+    networks:
+      - sigma
+    ports:
+      - 6333:6333
+      - 6334:6334
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  qdrant_data:
+  
 networks:
   app_network:
     driver: bridge
