@@ -41,7 +41,6 @@ services:
       - BACKEND_HOST=${BACKEND_HOST}
       - OAUTH_CALLBACK_URL=${OAUTH_CALLBACK_URL}
       - SUPERTOKEN_CONNECTION_URI=${SUPERTOKEN_CONNECTION_URI}
-      - REPLICATION_DATABASE_URL=${REPLICATION_DATABASE_URL}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
@@ -108,7 +107,7 @@ services:
       DEV_OTEL_EXPORTER_OTLP_ENDPOINT: ${TRIGGER_PROTOCOL:-http}://${TRIGGER_DOMAIN:-localhost:3030}/otel
       RUNTIME_PLATFORM: "docker-compose"
       DEPLOY_REGISTRY_HOST: docker.io
-      DEPLOY_REGISTRY_NAMESPACE: tegonhq
+      DEPLOY_REGISTRY_NAMESPACE: redplanethq
       TRIGGER_PROTOCOL: ${TRIGGER_PROTOCOL}
       TRIGGER_DOMAIN: ${TRIGGER_DOMAIN}
       INTERNAL_OTEL_TRACE_LOGGING_ENABLED: false
@@ -172,7 +171,7 @@ services:
     container_name: sol-electric
     restart: ${RESTART_POLICY:-unless-stopped}
     environment:
-      DATABASE_URL: ${TRIGGER_DATABASE_URL}?sslmode=disable
+      DATABASE_URL: ${ELECTRIC_DATABASE_URL}
       ELECTRIC_INSECURE: true
     networks:
       - sol
@@ -194,5 +193,6 @@ services:
         target: /qdrant/storage
 
 networks:
-  sol:
+  app_network:
     driver: bridge
+  sol: {}
